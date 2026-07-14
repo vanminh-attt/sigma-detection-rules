@@ -1,0 +1,21 @@
+title: Whoami Execution
+id: e28a5a99-da44-436d-b7a0-2afc20a5f413
+status: test
+description: Phat hien lenh whoami - ke tan cong thuong chay sau khi chiem duoc shell
+references:
+    - https://attack.mitre.org/techniques/T1033/
+author: Purple Team Lab
+date: 2026-07-08
+tags:
+    - attack.discovery
+    - attack.t1033
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection:
+        Image|endswith: '\whoami.exe'
+    condition: selection
+falsepositives:
+    - Admin kiem tra quyen
+level: medium

@@ -1,0 +1,5 @@
+name: Custom Splunk config cho lab
+priority: 100
+postprocessing:
+    - type: template
+      template: "index=* {{ query }}"

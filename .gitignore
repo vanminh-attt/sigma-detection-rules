@@ -1,0 +1,11 @@
+# Python virtualenv (sigma-cli lab env)
+venv/
+.venv/
+sigma-lab/
+__pycache__/
+*.pyc
+
+# OS noise
+Thumbs.db
+desktop.ini
+.DS_Store

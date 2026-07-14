@@ -1,0 +1,35 @@
+title: Failed Logon Attempt
+id: 9c0d1e2f-3333-4444-a555-b66667777888
+status: test
+description: Dang nhap that bai (Event 4625) - dung lam nen cho correlation rule brute-force
+author: Purple Team Lab
+date: 2026-07-08
+tags:
+    - attack.credential-access
+    - attack.t1110
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4625
+    condition: selection
+level: low
+---
+title: Possible Brute Force Attack
+id: 0d1e2f3a-4444-4555-b666-c77778888999
+status: test
+description: Hon 10 lan dang nhap that bai tu cung mot may nguon trong 5 phut
+author: Purple Team Lab
+date: 2026-07-08
+correlation:
+    type: event_count
+    rules:
+        - 9c0d1e2f-3333-4444-a555-b66667777888
+    group-by:
+        - IpAddress
+        - TargetUserName
+    timespan: 5m
+    condition:
+        gte: 10
+level: high

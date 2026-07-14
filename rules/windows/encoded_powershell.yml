@@ -1,0 +1,29 @@
+title: PowerShell Encoded Command
+id: 3a2b4c5d-1111-4222-8333-944445555666
+status: test
+description: Phat hien PowerShell chay voi tham so -EncodedCommand (ky thuat che giau lenh pho bien)
+references:
+    - https://attack.mitre.org/techniques/T1059/001/
+author: Purple Team Lab
+date: 2026-07-08
+tags:
+    - attack.execution
+    - attack.t1059.001
+    - attack.stealth
+    - attack.t1027
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_img:
+        - Image|endswith: '\powershell.exe'
+        - Image|endswith: '\pwsh.exe'
+    selection_cli:
+        CommandLine|contains|windash:
+            - ' -enc '
+            - ' -encodedcommand '
+            - ' -ec '
+    condition: selection_img and selection_cli
+falsepositives:
+    - Script quan tri hop le dung encoded command
+level: high

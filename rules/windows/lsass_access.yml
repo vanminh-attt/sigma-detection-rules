@@ -1,0 +1,30 @@
+title: Suspicious LSASS Process Access
+id: 7b8c9d0e-2222-4333-9444-a55556666777
+status: test
+description: Phat hien tien trinh la truy cap vao LSASS voi quyen doc bo nho (dau hieu dump credential kieu Mimikatz)
+references:
+    - https://attack.mitre.org/techniques/T1003/001/
+author: Purple Team Lab
+date: 2026-07-08
+tags:
+    - attack.credential-access
+    - attack.t1003.001
+logsource:
+    product: windows
+    category: process_access
+detection:
+    selection:
+        TargetImage|endswith: '\lsass.exe'
+        GrantedAccess|contains:
+            - '0x1010'
+            - '0x1410'
+            - '0x147a'
+            - '0x1fffff'
+    filter_legit:
+        SourceImage|startswith:
+            - 'C:\Windows\System32\'
+            - 'C:\Program Files\'
+    condition: selection and not filter_legit
+falsepositives:
+    - Phan mem antivirus, EDR quet LSASS
+level: high

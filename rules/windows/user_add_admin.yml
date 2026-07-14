@@ -1,0 +1,22 @@
+title: User Added to Local Administrators Group
+id: 2f3a4b5c-6666-4777-d888-e9999aaaabbb
+status: test
+description: Phat hien user duoc them vao nhom Administrators (Event 4732 - Security log)
+references:
+    - https://attack.mitre.org/techniques/T1098/
+author: Purple Team Lab
+date: 2026-07-08
+tags:
+    - attack.persistence
+    - attack.t1098
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4732
+        TargetUserName: 'Administrators'
+    condition: selection
+falsepositives:
+    - Admin cap quyen hop le
+level: high
